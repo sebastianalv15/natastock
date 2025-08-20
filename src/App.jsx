@@ -8,24 +8,33 @@ import "swiper/css/pagination";
 import "./styles.css";
 import { FiMail, FiInstagram, FiGithub, FiMenu, FiX } from "react-icons/fi";
 import WhatsAppButton from "./components/WhatsAppButton";
-/*
-  Rediseño completo: App.jsx
-  - Hero con CTA
-  - Navbar fija
-  - Sobre mí con imagen a la derecha
-  - Servicios
-  - Proyectos (masonry)
-  - Estudios de caso (modal)
-  - Testimonios (swiper)
-  - Contacto con validación simple
-  - Footer
-*/
 
 const proyectos = [
-  { id: 1, titulo: "Broshur", imagenes: ["/img/broshur 1.jpg","/img/broshur 2.jpg","/img/broshur 3.jpg","/img/broshur 4.jpg"], descripcion: "Folletos y brochures con enfoque editorial." },
-  { id: 2, titulo: "Cerveza Nómada", imagenes: ["/img/nomada beer.jpg","/img/cerveza nomada2.jpg","/img/cerveza nomada3.png"], descripcion: "Branding y packaging para cerveza artesanal." },
-  { id: 3, titulo: "Chocolate Bolivianatte", imagenes: ["/img/bolivianatte mkp 1.jpg","/img/bolivianatte mkp 2.jpg","/img/bolivianatte mkp 3.jpg"], descripcion: "Packaging y material promocional." },
-  { id: 4, titulo: "Album Cover", imagenes: ["/img/album cov1.png","/img/album cov2-min.png","/img/album cov3-min.png","/img/album cov4-min.png"], descripcion: "Diseño de portadas de álbumes y arte musical." }
+  { id: 1, titulo: "Broshur", imagenes: [
+    `${import.meta.env.BASE_URL}img/broshur 1.jpg`,
+    `${import.meta.env.BASE_URL}img/broshur 2.jpg`,
+    `${import.meta.env.BASE_URL}img/broshur 3.jpg`,
+    `${import.meta.env.BASE_URL}img/broshur 4.jpg`
+  ], descripcion: "Folletos y brochures con enfoque editorial." },
+
+  { id: 2, titulo: "Cerveza Nómada", imagenes: [
+    `${import.meta.env.BASE_URL}img/nomada beer.jpg`,
+    `${import.meta.env.BASE_URL}img/cerveza nomada2.jpg`,
+    `${import.meta.env.BASE_URL}img/cerveza nomada3.png`
+  ], descripcion: "Branding y packaging para cerveza artesanal." },
+
+  { id: 3, titulo: "Chocolate Bolivianatte", imagenes: [
+    `${import.meta.env.BASE_URL}img/bolivianatte mkp 1.jpg`,
+    `${import.meta.env.BASE_URL}img/bolivianatte mkp 2.jpg`,
+    `${import.meta.env.BASE_URL}img/bolivianatte mkp 3.jpg`
+  ], descripcion: "Packaging y material promocional." },
+
+  { id: 4, titulo: "Album Cover", imagenes: [
+    `${import.meta.env.BASE_URL}img/album cov1.png`,
+    `${import.meta.env.BASE_URL}img/album cov2-min.png`,
+    `${import.meta.env.BASE_URL}img/album cov3-min.png`,
+    `${import.meta.env.BASE_URL}img/album cov4-min.png`
+  ], descripcion: "Diseño de portadas de álbumes y arte musical." }
 ];
 
 const testimonials = [
@@ -93,7 +102,7 @@ export default function App() {
 
           <motion.div className="hero-feature" initial={{ scale: 0.98, opacity: 0 }} animate={{ scale:1, opacity:1 }} transition={{ delay: 0.6 }}>
             <div className="feature-card">
-              <img src="/img/album cov2-min.png" alt="Destacado" />
+              <img src={`${import.meta.env.BASE_URL}img/album cov2-min.png`} alt="Destacado" />
               <div className="feature-tag">Proyecto destacado</div>
             </div>
           </motion.div>
@@ -122,10 +131,9 @@ export default function App() {
             </div>
 
             <div className="about-visual">
-              {/* FOTO: coloca public/img/profile.jpg */}
               <div className="portrait-frame">
                 <div className="portrait-glass">
-                  <img src="/img/profile.jpg" alt="Natalia - diseñadora" />
+                  <img src={`${import.meta.env.BASE_URL}img/profile.jpg`} alt="Natalia - diseñadora" />
                 </div>
                 <div className="portrait-stamp">Diseñadora Gráfica</div>
               </div>
@@ -170,7 +178,6 @@ export default function App() {
           </div>
         </section>
 
-       
         <section className="testimonials">
           <h2>Testimonios</h2>
           <div className="testi-wrap">
@@ -204,7 +211,6 @@ export default function App() {
               <ul className="contact-list">
                 <li><FiMail /> <a href="mailto:natusanchez12@gmail.com">natusanchez12@gmail.com</a></li>
                 <li><FiInstagram /> <a href="https://www.instagram.com/natastock">@natastock</a></li>
-                
               </ul>
             </div>
 
@@ -226,7 +232,7 @@ export default function App() {
         <div className="small-muted">Diseño y dirección de arte</div>
       </footer>
       <WhatsAppButton />
-      {/* Modal para estudio de caso */}
+
       {activeCase && (
         <div className="modal" role="dialog" aria-modal="true">
           <div className="modal-inner">
@@ -235,7 +241,9 @@ export default function App() {
             <p className="muted">{activeCase.descripcion}</p>
             <div className="modal-gallery">
               {activeCase.imagenes.map((src, idx) => (
-                <div className="modal-img" key={idx}><img src={src} alt={`${activeCase.titulo} ${idx+1}`} /></div>
+                <div className="modal-img" key={idx}>
+                  <img src={src} alt={`${activeCase.titulo} ${idx+1}`} />
+                </div>
               ))}
             </div>
             <div className="modal-actions">
